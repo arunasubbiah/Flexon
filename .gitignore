@@ -1,0 +1,3 @@
+#Ignore files
+simpleDjangoApp/myApp/__pycache__/*
+simpleDjangoApp/simpleDjangoApp/__pycache__/*
