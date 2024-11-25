@@ -2,8 +2,7 @@ name: CI/CD Pipeline for Django
 
 on:
   push:
-    branches:
-      - stg-backend  # Change this to your main branch      
+    branches:[ main ]  # Change this to your main branch      
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -25,7 +24,7 @@ jobs:
       run: |
         # Create a temporary SSH key file
         echo "${{ secrets.EC2_SSH_KEY }}" > private_key.pem
-        chmod 600 private_key.pem
+        chmod 400 private_key.pem
 
         # SSH into the EC2 instance and execute commands
         ssh -o StrictHostKeyChecking=no -i private_key.pem ${EC2_USER}@${EC2_HOST} << 'EOF'
