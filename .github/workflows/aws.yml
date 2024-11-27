@@ -29,11 +29,11 @@ jobs:
         # SSH into the EC2 instance and execute commands
         ssh -o StrictHostKeyChecking=no -i private_key.pem ${EC2_USER}@${EC2_HOST} << 'EOF'
           cd ~/djangoApp
-          source venv/bin/activate
-          cd ~/djangoApp
+          source ~/myenv/bin/activate
+          cd ~/djangoApp/Flexon
           git remote -v
           git pull origin main --no-edit  # Change this to your main branch
-          pip install -r requirements.txt
+          pip install -r simpleDjangoApp/requirements.txt
           pkill -f runserver  # Stop the current Django process
-          nohup python3 manage.py runserver 0.0.0.0:8000 > server.log 2>&1 &  # Restart in the background
+          nohup python3 simpleDjangoApp/manage.py runserver 0.0.0.0:8000 > server.log 2>&1 &  # Restart in the background
         EOF
